@@ -1,0 +1,10 @@
+local day01 = require('solutions.day01')
+local day02 = require('solutions.day02')
+local day03 = require('solutions.day03')
+local day04 = require('solutions.day04')
+local day05 = require('solutions.day05')
+local day06 = require('solutions.day06')
+local day07 = require('solutions.day07')
+local day08 = require('solutions.day08')
+
+day08.solve()
