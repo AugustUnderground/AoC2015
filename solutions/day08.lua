@@ -9,7 +9,7 @@ local function num_chars(input)
   for _,raw in ipairs(input) do
     raw_len   = raw_len + string.len(raw)
     local str = string.gsub( string.gsub( string.gsub(raw, '\\"','"')
-                                        , '\\\\', '%\\' )
+                                        , '\\\\', 'b' )
                            , '\\x%w%w', 'x' )
     str_len   = str_len + (string.len(str) - 2)
     local enc = string.gsub(
