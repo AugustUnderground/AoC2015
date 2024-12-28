@@ -9,9 +9,10 @@ local days = { require('solutions.day01')
              , require('solutions.day09')
              , require('solutions.day10')
              , require('solutions.day11')
+             , require('solutions.day12')
              }
 
-days[11].solve()
+days[12].solve()
 
 -- for day = 1, #days - 1 do
 --   print("Day " .. tostring(day) .. ":")

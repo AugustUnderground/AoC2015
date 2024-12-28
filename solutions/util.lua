@@ -100,12 +100,31 @@ function U.equal(xs, ys)
   return true
 end
 
+function U.sum(xs)
+  local s = 0
+  for _,x in ipairs(xs) do
+    if type(x) == 'number' then
+      s = s + x
+    end
+  end
+  return s
+end
+
 function U.as_list(str)
   local tbl = {}
   for i = 1, #str do
     tbl[i] = str:sub(i, i)
   end
   return tbl
+end
+
+function U.is_array(tbl)
+  local i = 1
+  for _ in pairs(tbl) do
+    if tbl[i] == nil then return false end
+    i = i + 1
+  end
+  return true
 end
 
 return U
