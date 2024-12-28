@@ -1,18 +1,17 @@
 local utl  = require('solutions.util')
 local JSON = require('JSON')
-local inspect = require('inspect')
 
 local S = {}
 
-local function numbers(json)
+local function w_red(json)
   local nums = {}
   for num in string.gmatch(json, '[+-]?%d+') do
     table.insert(nums, tonumber(num))
   end
-  return nums
+  return utl.sum(nums)
 end
 
-local function nored(obj)
+local function wo_red(obj)
   if type(obj) == 'string' then
     return 0
   elseif type(obj) == 'number' then
@@ -20,7 +19,7 @@ local function nored(obj)
   elseif utl.is_array(obj) then
     local sum = 0
     for _,o in ipairs(obj) do
-      sum = sum + nored(o)
+      sum = sum + wo_red(o)
     end
     return sum
   else
@@ -30,7 +29,7 @@ local function nored(obj)
          (type(v) == 'string' and v == 'red') then
         return 0
       else
-        sum = sum + nored(v)
+        sum = sum + wo_red(v)
       end
     end
     return sum
@@ -39,9 +38,8 @@ end
 
 function S.solve()
   local json   = utl.read_input('./inputs/day12.txt')[1]
-  local nums   = numbers(json)
-  local silver = utl.sum(nums)
-  local gold   = nored(JSON:decode(json))
+  local silver = w_red(json)
+  local gold   = wo_red(JSON:decode(json))
   print('\tSilver: ', silver)
   print('\tGold:   ', gold)
 end
