@@ -1,5 +1,5 @@
 local io = require('io')
-local inspect = require('inspect')
+local ins = require('inspect')
 
 local U = {}
 local unpack = table.unpack or unpack
@@ -71,6 +71,31 @@ function U.permutations(list, num, res)
     end
   end
   return r
+end
+
+function U.cyclic_permuations(list)
+  local perms = {}
+  local n = #list
+  for j = 0,(n - 1) do
+    local combo = {}
+    for i = 0,(n - 1) do
+      combo[i + 1] = list[((i-j)%n)+1]
+    end
+    perms[j + 1] = combo
+  end
+  return perms
+end
+
+function U.no_cyclic_permuations(list)
+  local head = table.remove(list, 1)
+  local perms = U.permutations(list)
+  for i = 1,#perms do
+    local perm = perms[i]
+    table.insert(perm, 1, head)
+    perms[i] = perm
+  end
+  table.insert(list, 1, head)
+  return perms
 end
 
 function U.reverse(list)
