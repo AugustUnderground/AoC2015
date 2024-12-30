@@ -2,7 +2,6 @@ local io = require('io')
 local ins = require('inspect')
 
 local U = {}
-local unpack = table.unpack or unpack
 
 function U.read_input(path)
   local lines = {}
@@ -62,7 +61,7 @@ function U.permutations(list, num, res)
   local n = num or #list
   local r = res or {}
   if n == 1 then
-    table.insert(r, {unpack(list)})
+    table.insert(r, {table.unpack(list)})
   else
     for i = 1,n do
       list[i], list[n] = list[n], list[i]
@@ -166,6 +165,17 @@ function U.max_keys(tbl)
     end
   end
   return keys, max
+end
+
+function U.copy_mtx(mtx)
+  local new = {}
+  for r = 1,#mtx do
+    new[r] = {}
+    for c = 1,#mtx do
+      new[r][c] = mtx[r][c]
+    end
+  end
+  return new
 end
 
 return U
