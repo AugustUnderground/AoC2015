@@ -1,5 +1,4 @@
 local utl = require('solutions.util')
-local ins = require('inspect')
 
 local S = {}
 
@@ -39,15 +38,10 @@ local function score(t)
     scr[k] = 0
   end
   for s = 1,t do
-    local l = ''
-    local q = 0
-    for k,v in pairs(reindeer) do
-      if v(s) > q then
-        q = v(s)
-        l = k
-      end
-    end
-    scr[l] = scr[l] + 1
+    local p = {}
+    for k,v in pairs(reindeer) do p[k] = v(s) end
+    local k,_ = utl.max_keys(p)
+    for _,r in ipairs(k) do scr[r] = scr[r] + 1 end
   end
   local lead = 0
   for _,v in pairs(scr) do

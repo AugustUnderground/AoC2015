@@ -152,4 +152,20 @@ function U.is_array(tbl)
   return true
 end
 
+function U.max_keys(tbl)
+  local max  = nil
+  local keys = {}
+  for _,v in pairs(tbl) do
+    if max == nil or v > max then
+      max = v
+    end
+  end
+  for k, v in pairs(tbl) do
+    if v == max then
+      table.insert(keys, k)
+    end
+  end
+  return keys, max
+end
+
 return U
