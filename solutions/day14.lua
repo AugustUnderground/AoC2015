@@ -5,8 +5,8 @@ local S = {}
 local reindeer = {}
 
 local function parse(input)
+  local regex = '^(%a+).+%s(%d+).+%s(%d+).+%s+(%d+).+%.$'
   for _,line in ipairs(input) do
-    local regex = '^(%a+).+%s(%d+).+%s(%d+).+%s+(%d+).+%.$'
     local name,slope,flight,rest = line:match(regex)
     local s = tonumber(slope)
     local f = tonumber(flight)
