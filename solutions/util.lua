@@ -178,4 +178,33 @@ function U.copy_mtx(mtx)
   return new
 end
 
+function U.num_divisors(n)
+  local num = 2
+  local div = 2
+  while (div ^ 2) < n do
+    if n % div == 0 then
+      num = num + 2
+    end
+    div = div + 1
+  end
+  if (div ^ 2) == n then
+    num = num + 1
+  end
+  return num
+end
+
+function U.sum_divisors(n)
+  if n <= 0 then return 0 end
+  local sum = 0
+  for d = 1,math.floor(math.sqrt(n)) do
+    if n % d == 0 then
+      sum = sum + d + math.floor(n / d)
+      if d == (n / d) then
+        sum = sum - d
+      end
+    end
+  end
+  return sum
+end
+
 return U
