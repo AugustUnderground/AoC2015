@@ -23,10 +23,10 @@ local function pirate(row, col)
 end
 
 function S.solve()
-  local input    = utl.read_input('./inputs/day25.txt')
+  local input   = utl.read_input('./inputs/day25.txt')
   local row,col = parse(input)
-  local silver   = pirate(row,col)
-  local gold     = 'Weather machine started'
+  local silver  = pirate(row,col)
+  local gold    = 'Weather machine started'
   print('\tSilver: ', silver)
   print('\tGold:   ', gold)
 end
