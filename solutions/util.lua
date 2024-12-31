@@ -134,6 +134,16 @@ function U.sum(xs)
   return s
 end
 
+function U.prod(xs)
+  local s = 1
+  for _,x in ipairs(xs) do
+    if type(x) == 'number' then
+      s = s * x
+    end
+  end
+  return s
+end
+
 function U.as_list(str)
   local tbl = {}
   for i = 1, #str do
@@ -225,6 +235,23 @@ function U.deepcopy(orig, copies)
         copy = orig
     end
     return copy
+end
+
+function U.combinations(list, n)
+  local res   = {}
+  local combo = {}
+  local function combine(start, depth)
+    if depth > n then
+      table.insert(res, {table.unpack(combo)})
+      return
+    end
+    for i = start, #list do
+      combo[depth] = list[i]
+      combine(i + 1, depth + 1)
+    end
+  end
+  combine(1, 1)
+  return res
 end
 
 return U
