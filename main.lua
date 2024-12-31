@@ -1,10 +1,10 @@
 local days = {}
-local num  = 21
+local num  = 22
 for d = 1,num do
   days[d] = require('solutions.day' .. string.format('%02i', tostring(d)))
 end
 
-days[21].solve()
+days[22].solve()
 
 -- for day = 1,num do
 --   print("Day " .. tostring(day) .. ":")

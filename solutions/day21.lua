@@ -27,7 +27,7 @@ local boss = {}
 local function spawn_boss(input)
   for _,line in ipairs(input) do
     local k,v = line:match('^(.+):%s+(%d+)$')
-    boss[k:gsub('%s+','')] = v
+    boss[k:gsub('%s+','')] = tonumber(v)
   end
 end
 

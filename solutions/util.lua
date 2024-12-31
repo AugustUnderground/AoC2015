@@ -207,4 +207,24 @@ function U.sum_divisors(n)
   return sum
 end
 
+function U.deepcopy(orig, copies)
+    copies = copies or {}
+    local copy
+    if type(orig) == 'table' then
+        if copies[orig] then
+            copy = copies[orig]
+        else
+            copy = {}
+            copies[orig] = copy
+            for orig_key, orig_value in next, orig, nil do
+                copy[U.deepcopy(orig_key, copies)] = U.deepcopy(orig_value, copies)
+            end
+            setmetatable(copy, U.deepcopy(getmetatable(orig), copies))
+        end
+    else
+        copy = orig
+    end
+    return copy
+end
+
 return U
